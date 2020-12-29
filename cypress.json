@@ -1,0 +1,5 @@
+{
+  "baseUrl": "",
+  "testFiles": "**/*.{feature,features}",
+  "ignoreTestFiles": "*.js"
+}

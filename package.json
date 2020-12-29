@@ -1,0 +1,30 @@
+{
+  "name": "cy-browserstack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint . && cypress run --spec \"**/*.feature\"",
+    "test:all": "eslint . && cypress run --spec \"**/*.features\"",
+    "open": "npx cypress open",
+    "browserstack": "browserstack-cypress run cypress run --spec \"**/*.feature\" -e TAGS='@browserstack'",
+    "fixStyle": "eslint . --fix"
+  },
+  "keywords": [
+    "cypress",
+    "cucumber",
+    "testing"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cucumber-expressions": "^6.6.2",
+    "cypress": "^6.2.0"
+  },
+  "dependencies": {
+    "cypress-cucumber-preprocessor": "^4.0.0"
+  },
+  "cypress-cucumber-preprocessor": {
+    "nonGlobalStepDefinitions": true
+  }
+}

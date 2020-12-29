@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "eslint . && cypress run --spec \"**/*.feature\"",
+    "test": "cypress run --spec \"**/*.feature\"",
     "test:all": "eslint . && cypress run --spec \"**/*.features\"",
     "open": "npx cypress open",
     "browserstack": "browserstack-cypress run cypress run --spec \"**/*.feature\" -e TAGS='@browserstack'",

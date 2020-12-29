@@ -19,7 +19,14 @@
   "license": "ISC",
   "devDependencies": {
     "cucumber-expressions": "^6.6.2",
-    "cypress": "^6.2.0"
+    "cypress": "^6.2.0",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-chai-friendly": "^0.6.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.0",
+    "prettier": "^2.2.1"
   },
   "dependencies": {
     "cypress-cucumber-preprocessor": "^4.0.0"

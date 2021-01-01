@@ -1,10 +1,9 @@
 #!/bin/bash
 
-FIRSTNAME=$1
-LASTNAME=$2
+FEATURE_FILES=$1
 echo "Hello $FIRSTNAME $LASTNAME"
 npm i
 echo "-----------------------"
-echo node --version
+echo $(node --version)
 echo "+++++++++++++++++++++++"
-npx cypress run --spec "**/*.features"
+npx cypress run --spec $FEATURE_FILES

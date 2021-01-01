@@ -12,7 +12,7 @@ pipeline {
         echo "Running build ${env.BUILD_ID} on ${env.JENKINS_URL}"
         sh 'npm ci'
         sh 'npm run cy:verify'
-        sh 'npm cy:info'
+        sh 'npm run cy:info'
       }
     }
 

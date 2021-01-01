@@ -18,7 +18,8 @@ pipeline {
     stage('e2e tests') {
       steps {
         echo "Running build ${env.BUILD_ID}"
-        sh "chmod +x ./script.sh $PAGE $FEATURE_FILES"
+        sh 'chmod +x ./script.sh'
+        sh './script.sh $PAGE $FEATURE_FILES'
       }
     }
   }

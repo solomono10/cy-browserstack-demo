@@ -6,6 +6,9 @@
   "scripts": {
     "test": "cypress run --spec \"**/*.feature\"",
     "test:all": "eslint . && cypress run --spec \"**/*.features\"",
+    "headed": "npx cypress run --headed",
+    "test:chrome": "npx cypress run --spec \"**/*.features\" --browser chrome",
+    "test:chrome:headless": "npx cypress run --spec \"**/*.features\" --browser chrome --headless",
     "open": "npx cypress open",
     "browserstack": "browserstack-cypress run cypress run --spec \"**/*.feature\" -e TAGS='@browserstack'",
     "fixStyle": "eslint . --fix"

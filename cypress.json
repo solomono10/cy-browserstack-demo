@@ -3,6 +3,6 @@
   "testFiles": "**/*.{feature,features}",
   "ignoreTestFiles": "*.js",
   "env": {
-    "PAGE": ""
+    "PAGE": "registration"
   }
 }

@@ -7,4 +7,4 @@ npm i
 echo "-----------------------"
 echo node --version
 echo "+++++++++++++++++++++++"
-npm run test
+npx cypress run --spec "**/*.features"

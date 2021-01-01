@@ -18,7 +18,7 @@ pipeline {
     stage('e2e tests') {
       steps {
         echo "Running build ${env.BUILD_ID}"
-        sh "./script.sh"
+        sh "./script.sh $PAGE $FEATURE_FILES"
       }
     }
   }

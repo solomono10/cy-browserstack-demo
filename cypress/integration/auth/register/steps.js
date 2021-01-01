@@ -2,9 +2,10 @@ import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
 import locators from '../../../fixtures/locators';
 
 const { registrationForm, subscriptionForm, Welcome } = locators;
+const path = Cypress.env("path");
 
 Given('I am on the registration page', () => {
-    cy.visit('/registration');
+    cy.visit(`/${path}`);
 });
 
 When('I register with {word}, {word} and {word}', (firstName, lastName, email) => {

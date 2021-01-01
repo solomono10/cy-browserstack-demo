@@ -1,9 +1,10 @@
 #!/bin/bash
+PATH=$1
+FEATURE_FILES=$2
 
-FEATURE_FILES=$1
 echo "Hello $FIRSTNAME $LASTNAME"
 npm i
 echo "-----------------------"
 echo $(node --version)
 echo "+++++++++++++++++++++++"
-npx cypress run --spec $FEATURE_FILES
+CYPRESS_PATH=$PATH npx cypress run --spec $FEATURE_FILES

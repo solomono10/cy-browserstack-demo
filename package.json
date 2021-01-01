@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "cy:verify": "npx cypress --version",
     "test": "cypress run --spec \"**/*.feature\"",
     "test:all": "eslint . && cypress run --spec \"**/*.features\"",
     "headed": "npx cypress run --headed",

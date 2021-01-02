@@ -5,8 +5,8 @@ node {
         browserStackProps.auth.username = "${browserstack_username}"
         browserStackProps.auth.access_key = "${browserstack_key}"
         writeJSON file: 'browserstack.json', json: browserStackProps
-        echo "${browserStackProps.auth.username}"
-        echo "${browserStackProps.auth.access_key}"
+        // echo "${browserStackProps.auth.username}"
+        // echo "${browserStackProps.auth.access_key}"
 
         // echo "****************************"
         // echo "${browserstack_username}"
@@ -85,6 +85,7 @@ pipeline {
         // echo "++++++++++++++++++++++++++++"
         // assert props.attr1 == 'One'
         echo "Running build ${env.BUILD_ID} on ${env.JENKINS_URL}"
+        sh 'npm install -g browserstack-cypress-cli'
         sh 'npm ci'
         sh 'npm run cy:verify'
         sh 'npm run cy:info'

@@ -61,20 +61,20 @@ pipeline {
 
 
 
-    stage('Read-JSON') {
-      steps {
-        script {
-            def browserStackProps = readJSON file: 'browserstack.json'
-            echo "----------------------------"
-            browserStackProps.auth.username = "${BUILD_NUMBER}" as String
-            browserStackProps.auth.access_key = "${BROWSER}" as String
-            writeJSON file: 'browserstack.json', json: browserStackProps
-            echo "${browserStackProps.auth.username}"
-            echo "${browserStackProps.auth.access_key}"
-            echo "++++++++++++++++++++++++++++"
-          }
-      }
-    }
+    // stage('Read-JSON') {
+    //   steps {
+    //     script {
+    //         def browserStackProps = readJSON file: 'browserstack.json'
+    //         echo "----------------------------"
+    //         browserStackProps.auth.username = "${BUILD_NUMBER}" as String
+    //         browserStackProps.auth.access_key = "${BROWSER}" as String
+    //         writeJSON file: 'browserstack.json', json: browserStackProps
+    //         echo "${browserStackProps.auth.username}"
+    //         echo "${browserStackProps.auth.access_key}"
+    //         echo "++++++++++++++++++++++++++++"
+    //       }
+    //   }
+    // }
 
     stage('dependencies') {
       steps {
@@ -100,6 +100,12 @@ pipeline {
       }
     }
   }
+  post {
+    always {
+      mail to: team@example.com, subject: "The Pipeline success :("
+      echo ‘Attach report to Browserstack’
+    }
+  }
 }
 
 // Credentials Binding Plugin
@@ -107,8 +113,12 @@ pipeline {
 // https://github.com/jenkinsci/generic-webhook-trigger-plugin/issues/107
 // https://docs.cloudbees.com/docs/cloudbees-ci/latest/cloud-secure-guide/injecting-secrets
 
+// https://www.browserstack.com/docs/automate/selenium/jenkins#JenkinsUI
+// https://www.browserstack.com/guide/continuous-integration-with-jenkins-tutorial
+
 // https://www.rubix.nl/blogs/jenkins-working-with-credentials-in-your-pipeline/
 // https://stackoverflow.com/questions/53178146/how-to-get-password-from-a-credentials-parameter-in-jenkins-pipeline-job
+// https://medium.com/@gustavo.guss/how-to-do-post-build-in-jenkins-pipeline-d1e7233909b8
 
 // https://www.nuomiphp.com/eplan/en/398192.html
 // https://tomd.xyz/jenkins-env-vars/

@@ -4,8 +4,8 @@ node {
       // withCredentials([string(credentialsId: 'BROWSERSTACK_USER', variable: 'browserstack_username'), string(credentialsId: 'BROWSERSTACK_KEY', variable: 'browserstack_key')]) {
 
         def browserStackProps = readJSON file: './browserstack.json'
-        browserStackProps.auth.username = "${BROWSERSTACK_USERNAME}" as String
-        browserStackProps.auth.access_key = "${BROWSERSTACK_ACCESS_KEY}" as String
+        browserStackProps.auth.username = "${env.BROWSERSTACK_USERNAME}" as String
+        browserStackProps.auth.access_key = "${env.BROWSERSTACK_ACCESS_KEY}" as String
         writeJSON file: 'browserstack.json', json: browserStackProps
 
         // echo "${browserStackProps.auth.username}"
@@ -121,6 +121,8 @@ pipeline {
 // https://docs.cloudbees.com/docs/cloudbees-ci/latest/cloud-secure-guide/injecting-secrets
 // https://gist.github.com/teeks99/d7c331b3f66a9fe6507cfdaaabbd9229
 // https://www.browserstack.com/local-testing/automate
+
+// https://stackoverflow.com/questions/47064135/groovy-lang-missingpropertyexception-no-such-property-jenkins-for-class-groov
 
 
 // https://www.browserstack.com/docs/automate/selenium/jenkins#JenkinsUI

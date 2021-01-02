@@ -1,33 +1,33 @@
-// node {
-//     stage('Example') {
-//       withCredentials([string(credentialsId: 'BROWSERSTACK_USER', variable: 'browserstack_username'), string(credentialsId: 'BROWSERSTACK_KEY', variable: 'browserstack_key')]) {
-//         def browserStackProps = readJSON file: './browserstack.json'
-//         browserStackProps.auth.username = "${browserstack_username}"
-//         browserStackProps.auth.access_key = "${browserstack_key}"
-//         writeJSON file: 'browserstack.json', json: browserStackProps
-//         // echo "${browserStackProps.auth.username}"
-//         // echo "${browserStackProps.auth.access_key}"
+node {
+    stage('Example') {
+      withCredentials([string(credentialsId: 'BROWSERSTACK_USER', variable: 'browserstack_username'), string(credentialsId: 'BROWSERSTACK_KEY', variable: 'browserstack_key')]) {
+        def browserStackProps = readJSON file: './browserstack.json'
+        browserStackProps.auth.username = "${browserstack_username}" as String
+        browserStackProps.auth.access_key = "${browserstack_key}" as String
+        writeJSON file: 'browserstack.json', json: browserStackProps
+        // echo "${browserStackProps.auth.username}"
+        // echo "${browserStackProps.auth.access_key}"
 
-//         // echo "****************************"
-//         // echo "${browserstack_username}"
-//         // echo "****************************"
-//           // some block
-//       }
-//         // if (env.BRANCH_NAME == 'master') {
-//         //     echo 'I only execute on the master branch'
-//         // } else {
-//         //     echo 'I execute elsewhere'
-//         //     def browserStackProps = readJSON file: 'browserstack.json'
-//         //     echo "----------------------------"
-//         //     browserStackProps.auth.username = "${BUILD_NUMBER}"
-//         //     browserStackProps.auth.access_key = "${BROWSER}"
-//         //     writeJSON file: 'browserstack.json', json: browserStackProps
-//         //     echo "${browserStackProps.auth.username}"
-//         //     echo "${browserStackProps.auth.access_key}"
-//         //     echo "++++++++++++++++++++++++++++"
-//         // }
-//     }
-// }
+        // echo "****************************"
+        // echo "${browserstack_username}"
+        // echo "****************************"
+          // some block
+      }
+        // if (env.BRANCH_NAME == 'master') {
+        //     echo 'I only execute on the master branch'
+        // } else {
+        //     echo 'I execute elsewhere'
+        //     def browserStackProps = readJSON file: 'browserstack.json'
+        //     echo "----------------------------"
+        //     browserStackProps.auth.username = "${BUILD_NUMBER}"
+        //     browserStackProps.auth.access_key = "${BROWSER}"
+        //     writeJSON file: 'browserstack.json', json: browserStackProps
+        //     echo "${browserStackProps.auth.username}"
+        //     echo "${browserStackProps.auth.access_key}"
+        //     echo "++++++++++++++++++++++++++++"
+        // }
+    }
+}
 
 pipeline {
 

@@ -33,8 +33,8 @@ pipeline {
         script {
             def browserStackProps = readJSON file: 'browserstack.json'
             echo "----------------------------"
-            browserStackProps.auth.username = "jidex"
-            browserStackProps.auth.access_key = "password"
+            browserStackProps.auth.username = "${BUILD_NUMBER}"
+            browserStackProps.auth.access_key = "${BROWSER}"
             writeJSON file: 'browserstack.json', json: browserStackProps
             echo "${browserStackProps.auth.username}"
             echo "${browserStackProps.auth.access_key}"

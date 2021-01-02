@@ -26,11 +26,11 @@ pipeline {
 
     stage('dependencies') {
       steps {
-        props = readJSON file: "${env.WORKSPACE}\\browserstack.json"
-        // assert props['disable_usage_reporting'] == false
-        echo "----------------------------"
-        echo "${props['disable_usage_reporting']}"
-        echo "++++++++++++++++++++++++++++"
+        // props = readJSON file: "${env.WORKSPACE}\\browserstack.json"
+        // // assert props['disable_usage_reporting'] == false
+        // echo "----------------------------"
+        // echo "${props['disable_usage_reporting']}"
+        // echo "++++++++++++++++++++++++++++"
         // assert props.attr1 == 'One'
         echo "Running build ${env.BUILD_ID} on ${env.JENKINS_URL}"
         sh 'npm ci'

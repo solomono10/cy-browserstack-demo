@@ -4,8 +4,17 @@ FEATURE_FILES=$2
 BROWSER=$3
 
 npm i
-npx cypress run --env PAGE=$PAGE \
+# npx cypress run --env PAGE=$PAGE \
+#                 --spec $FEATURE_FILES \
+#                 --browser $BROWSER \
+#                 --headless \
+#                 --config viewportWidth=1280,viewportHeight=720,video=false
+
+browserstack-cypress run cypress run \
+                --env PAGE=$PAGE \
                 --spec $FEATURE_FILES \
                 --browser $BROWSER \
                 --headless \
                 --config viewportWidth=1280,viewportHeight=720,video=false
+
+# browserstack-cypress run cypress run --env PAGE=$PAGE --spec $FEATURE_FILES--browser $BROWSER

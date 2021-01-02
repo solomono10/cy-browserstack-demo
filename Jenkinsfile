@@ -23,13 +23,15 @@ pipeline {
     //       }
     //   }
     // }
+
     stage('Read-JSON') {
       steps {
         script {
-          def oldJson =
             def props = readJSON file: 'browserstack.json'
             echo "----------------------------"
             assert props['disable_usage_reporting'] == false
+            echo "${props.auth.username}"
+            echo "${props.auth.access_key}"
             echo "${props['disable_usage_reporting']}"
             echo "++++++++++++++++++++++++++++"
           }

@@ -9,9 +9,8 @@ pipeline {
 
     stage('dependencies') {
       steps {
-
-        def props = readJSON file: "${env.WORKSPACE}\\browserstack.json"
-        assert props['disable_usage_reporting'] == false
+        props = readJSON file: "${env.WORKSPACE}\\browserstack.json"
+        // assert props['disable_usage_reporting'] == false
         echo "----------------------------"
         echo '${props['disable_usage_reporting']}'
         echo "++++++++++++++++++++++++++++"

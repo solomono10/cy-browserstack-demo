@@ -1,20 +1,20 @@
 #!/bin/bash
-PAGE=$1
-FEATURE_FILES=$2
-BROWSER=$3
+BASE_URL=$1
+PAGE=$2
+FEATURE_FILES=$3
+BROWSER=$4
 
 npm i
-# npx cypress run --env PAGE=$PAGE \
+# export CYPRESS_BASE_URL=$BASE_URL
+# CYPRESS_BASE_URL=$BASE_URL npx cypress run --env PAGE=$PAGE \
 #                 --spec $FEATURE_FILES \
 #                 --browser $BROWSER \
-#                 --headless \
+#                 --headed \
 #                 --config viewportWidth=1280,viewportHeight=720,video=false
 
-browserstack-cypress run cypress run \
-                --env PAGE=$PAGE \
+browserstack-cypress run --sync \
+                --env PAGE=$PAGE,baseUrl=$BASE_URL \
                 --spec $FEATURE_FILES \
                 --browser $BROWSER \
                 --headless \
                 --config viewportWidth=1280,viewportHeight=720,video=false
-
-# browserstack-cypress run cypress run --env PAGE=$PAGE --spec $FEATURE_FILES--browser $BROWSER

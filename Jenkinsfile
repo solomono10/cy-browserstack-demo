@@ -1,10 +1,13 @@
 node {
     stage('Example') {
-      withCredentials([string(credentialsId: 'BROWSERSTACK_USER', variable: 'browserstack_username'), string(credentialsId: 'BROWSERSTACK_KEY', variable: 'browserstack_key')]) {
+      
+      // withCredentials([string(credentialsId: 'BROWSERSTACK_USER', variable: 'browserstack_username'), string(credentialsId: 'BROWSERSTACK_KEY', variable: 'browserstack_key')]) {
+
         def browserStackProps = readJSON file: './browserstack.json'
-        browserStackProps.auth.username = "${browserstack_username}" as String
-        browserStackProps.auth.access_key = "${browserstack_key}" as String
+        browserStackProps.auth.username = "${BROWSERSTACK_USERNAME}" as String
+        browserStackProps.auth.access_key = "${BROWSERSTACK_ACCESS_KEY}" as String
         writeJSON file: 'browserstack.json', json: browserStackProps
+
         // echo "${browserStackProps.auth.username}"
         // echo "${browserStackProps.auth.access_key}"
 
@@ -12,7 +15,7 @@ node {
         // echo "${browserstack_username}"
         // echo "****************************"
           // some block
-      }
+      // }
         // if (env.BRANCH_NAME == 'master') {
         //     echo 'I only execute on the master branch'
         // } else {
@@ -96,7 +99,7 @@ pipeline {
       steps {
         echo "Running build ${env.BUILD_ID}"
         sh 'chmod +x ./script.sh'
-        sh './script.sh $PAGE $FEATURE_FILES $BROWSER'
+        sh './script.sh $BASE_URL $PAGE $FEATURE_FILES $BROWSER'
       }
     }
   }
@@ -112,13 +115,19 @@ pipeline {
 }
 
 // Credentials Binding Plugin
+// https://janmolak.com/jenkins-2-0-pipelines-and-browserstack-bd5a4ed3010d
 // https://www.jenkins.io/doc/book/pipeline/syntax/#script
 // https://github.com/jenkinsci/generic-webhook-trigger-plugin/issues/107
 // https://docs.cloudbees.com/docs/cloudbees-ci/latest/cloud-secure-guide/injecting-secrets
 // https://gist.github.com/teeks99/d7c331b3f66a9fe6507cfdaaabbd9229
+// https://www.browserstack.com/local-testing/automate
+
 
 // https://www.browserstack.com/docs/automate/selenium/jenkins#JenkinsUI
 // https://www.browserstack.com/guide/continuous-integration-with-jenkins-tutorial
+// https://www.browserstack.com/app-automate/browserstack-cli
+// https://www.browserstack.com/docs/automate/cypress
+// https://www.browserstack.com/docs/automate/cypress/test-environment
 
 // https://www.rubix.nl/blogs/jenkins-working-with-credentials-in-your-pipeline/
 // https://stackoverflow.com/questions/53178146/how-to-get-password-from-a-credentials-parameter-in-jenkins-pipeline-job

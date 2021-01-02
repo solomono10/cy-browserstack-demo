@@ -3,9 +3,10 @@ import locators from '../../../fixtures/locators';
 
 const { registrationForm, subscriptionForm, Welcome } = locators;
 const path = Cypress.env("PAGE");
+const baseUrl = Cypress.env("baseUrl");
 
 Given('I am on the registration page', () => {
-    cy.visit(`/${path}`);
+    cy.visit(`${baseUrl}/${path}`);
 });
 
 When('I register with {word}, {word} and {word}', (firstName, lastName, email) => {

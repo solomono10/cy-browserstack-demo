@@ -6,20 +6,32 @@ pipeline {
   tools {nodejs "node"}
 
   stages {
+    // stage('Read-JSON') {
+    //   steps {
+    //     script {
+    //       def oldJson = '''{
+    //         "branch":{
+    //           "type-0.2":{"version":"0.2","rc":"1","rel":"1","extras":"1"},
+    //           "type-0.3":{"version":"0.3","rc":"1","rel":"1","extras":"1"}
+    //           }
+    //         }'''
+    //         def props = readJSON text: oldJson
+    //         def keyList = props['branch'].keySet()
+    //         echo "${keyList}"
+    //         // println(props['branch'].keySet())
+
+    //       }
+    //   }
+    // }
     stage('Read-JSON') {
       steps {
         script {
-          def oldJson = '''{
-            "branch":{
-              "type-0.2":{"version":"0.2","rc":"1","rel":"1","extras":"1"},
-              "type-0.3":{"version":"0.3","rc":"1","rel":"1","extras":"1"}
-              }
-            }'''
-            def props = readJSON text: oldJson
-            def keyList = props['branch'].keySet()
-            echo "${keyList}"
-            // println(props['branch'].keySet())
-
+          def oldJson =
+            def props = readJSON file: 'browserstack.json'
+            echo "----------------------------"
+            assert props['disable_usage_reporting'] == false
+            echo "${props['disable_usage_reporting']}"
+            echo "++++++++++++++++++++++++++++"
           }
       }
     }

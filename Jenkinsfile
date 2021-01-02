@@ -9,6 +9,13 @@ pipeline {
 
     stage('dependencies') {
       steps {
+
+        def props = readJSON file: 'browserstack.json'
+        assert props['disable_usage_reporting'] == false
+        echo "----------------------------"
+        echo '${props['disable_usage_reporting']}'
+        echo "++++++++++++++++++++++++++++"
+        // assert props.attr1 == 'One'
         echo "Running build ${env.BUILD_ID} on ${env.JENKINS_URL}"
         sh 'npm ci'
         sh 'npm run cy:verify'

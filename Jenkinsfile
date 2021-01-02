@@ -64,13 +64,13 @@ pipeline {
     stage('Read-JSON') {
       steps {
         script {
-            def browserStackProps = readJSON file: 'browserstack.json'
+        //     def browserStackProps = readJSON file: 'browserstack.json'
             echo "----------------------------"
-            browserStackProps.auth.username = "${BUILD_NUMBER}"
-            browserStackProps.auth.access_key = "${BROWSER}"
-            writeJSON file: 'browserstack.json', json: browserStackProps
-            echo "${browserStackProps.auth.username}"
-            echo "${browserStackProps.auth.access_key}"
+        //     browserStackProps.auth.username = "${BUILD_NUMBER}"
+        //     browserStackProps.auth.access_key = "${BROWSER}"
+        //     writeJSON file: 'browserstack.json', json: browserStackProps
+        //     echo "${browserStackProps.auth.username}"
+        //     echo "${browserStackProps.auth.access_key}"
             echo "++++++++++++++++++++++++++++"
           }
       }

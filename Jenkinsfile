@@ -36,8 +36,8 @@ pipeline {
             browserStackProps.auth.username = "jidex"
             browserStackProps.auth.access_key = "password"
             writeJSON file: 'browserstack.json', json: browserStackProps
-            echo "${props.auth.username}"
-            echo "${props.auth.access_key}"
+            echo "${browserStackProps.auth.username}"
+            echo "${browserStackProps.auth.access_key}"
             echo "++++++++++++++++++++++++++++"
           }
       }

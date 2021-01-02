@@ -2,8 +2,8 @@ node {
     stage('Example') {
       withCredentials([string(credentialsId: 'BROWSERSTACK_USER', variable: 'browserstack_username'), string(credentialsId: 'BROWSERSTACK_KEY', variable: 'browserstack_key')]) {
         def browserStackProps = readJSON file: 'browserstack.json'
-        browserStackProps.auth.username = "${browserstack_username}"
-        browserStackProps.auth.access_key = "${browserstack_key}"
+        browserStackProps.auth.username = "${BROWSERSTACK_USER}"
+        browserStackProps.auth.access_key = "${BROWSERSTACK_KEY}"
         writeJSON file: 'browserstack.json', json: browserStackProps
         // echo "${browserStackProps.auth.username}"
         // echo "${browserStackProps.auth.access_key}"

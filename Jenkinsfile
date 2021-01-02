@@ -1,18 +1,24 @@
 node {
     stage('Example') {
-        if (env.BRANCH_NAME == 'master') {
-            echo 'I only execute on the master branch'
-        } else {
-            echo 'I execute elsewhere'
-            def browserStackProps = readJSON file: 'browserstack.json'
-            echo "----------------------------"
-            browserStackProps.auth.username = "${BUILD_NUMBER}"
-            browserStackProps.auth.access_key = "${BROWSER}"
-            writeJSON file: 'browserstack.json', json: browserStackProps
-            echo "${browserStackProps.auth.username}"
-            echo "${browserStackProps.auth.access_key}"
-            echo "++++++++++++++++++++++++++++"
-        }
+      withCredentials([string(credentialsId: 'BROWSERSTACK_USER', variable: 'browserstack_username'), string(credentialsId: 'BROWSERSTACK_KEY', variable: 'browserstack_key')]) {
+        echo "****************************"
+        echo "${browserstack_username}"
+        echo "****************************"
+          // some block
+      }
+        // if (env.BRANCH_NAME == 'master') {
+        //     echo 'I only execute on the master branch'
+        // } else {
+        //     echo 'I execute elsewhere'
+        //     def browserStackProps = readJSON file: 'browserstack.json'
+        //     echo "----------------------------"
+        //     browserStackProps.auth.username = "${BUILD_NUMBER}"
+        //     browserStackProps.auth.access_key = "${BROWSER}"
+        //     writeJSON file: 'browserstack.json', json: browserStackProps
+        //     echo "${browserStackProps.auth.username}"
+        //     echo "${browserStackProps.auth.access_key}"
+        //     echo "++++++++++++++++++++++++++++"
+        // }
     }
 }
 
@@ -46,9 +52,7 @@ pipeline {
 // writeJSON(file: 'message1.json', json: data, pretty: 4)
 
 
-// withCredentials([string(credentialsId: 'BROWSERSTACK_USER', variable: 'browserstack_username'), string(credentialsId: 'BROWSERSTACK_KEY', variable: 'browserstack_key')]) {
-//     // some block
-// }
+
 
     stage('Read-JSON') {
       steps {

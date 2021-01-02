@@ -102,8 +102,11 @@ pipeline {
   }
   post {
     always {
-      mail to: team@example.com, subject: "The Pipeline success :("
-      echo ‘Attach report to Browserstack’
+      mail to: 'notify-list@example.com', from: 'jenkins@example.com',
+                subject: "Example Build: ${env.JOB_NAME} - Failed",
+                body: "Job Failed - \"${env.JOB_NAME}\" build: ${env.BUILD_NUMBER}\n\nView the log at:\n ${env.BUILD_URL}\n\nBlue Ocean:\n${env.RUN_DISPLAY_URL}"
+
+      echo "Attach report to Browserstack"
     }
   }
 }
@@ -112,6 +115,7 @@ pipeline {
 // https://www.jenkins.io/doc/book/pipeline/syntax/#script
 // https://github.com/jenkinsci/generic-webhook-trigger-plugin/issues/107
 // https://docs.cloudbees.com/docs/cloudbees-ci/latest/cloud-secure-guide/injecting-secrets
+// https://gist.github.com/teeks99/d7c331b3f66a9fe6507cfdaaabbd9229
 
 // https://www.browserstack.com/docs/automate/selenium/jenkins#JenkinsUI
 // https://www.browserstack.com/guide/continuous-integration-with-jenkins-tutorial

@@ -24,15 +24,20 @@ pipeline {
     //   }
     // }
 
+//     def data = readJSON text: '{}'
+// data.a = "test: ${myVar}" as String
+// writeJSON(file: 'message1.json', json: data, pretty: 4)
+
     stage('Read-JSON') {
       steps {
         script {
-            def props = readJSON file: 'browserstack.json'
+            def browserStackProps = readJSON file: 'browserstack.json'
             echo "----------------------------"
-            assert props['disable_usage_reporting'] == false
+            browserStackProps.auth.username = "jidex"
+            browserStackProps.auth.access_key = "password"
+            writeJSON(file: 'browserstack.json', json: browserStackProps, pretty: 4)
             echo "${props.auth.username}"
             echo "${props.auth.access_key}"
-            echo "${props['disable_usage_reporting']}"
             echo "++++++++++++++++++++++++++++"
           }
       }

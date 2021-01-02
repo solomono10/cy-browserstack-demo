@@ -1,9 +1,16 @@
 node {
     stage('Example') {
       withCredentials([string(credentialsId: 'BROWSERSTACK_USER', variable: 'browserstack_username'), string(credentialsId: 'BROWSERSTACK_KEY', variable: 'browserstack_key')]) {
-        echo "****************************"
-        echo "${browserstack_username}"
-        echo "****************************"
+        def browserStackProps = readJSON file: 'browserstack.json'
+        browserStackProps.auth.username = "${browserstack_username}"
+        browserStackProps.auth.access_key = "${browserstack_key}"
+        writeJSON file: 'browserstack.json', json: browserStackProps
+        echo "${browserStackProps.auth.username}"
+        echo "${browserStackProps.auth.access_key}"
+
+        // echo "****************************"
+        // echo "${browserstack_username}"
+        // echo "****************************"
           // some block
       }
         // if (env.BRANCH_NAME == 'master') {

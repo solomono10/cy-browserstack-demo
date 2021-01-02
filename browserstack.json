@@ -1,7 +1,7 @@
 {
   "auth": {
-    "username": "oluolu1",
-    "access_key": "aSc5qhvJHG3AzZygyBsG"
+    "username": "ko",
+    "access_key": "p25NFKo"
   },
   "browsers": [
     {
@@ -27,6 +27,7 @@
   },
   "connection_settings": {
     "local": true,
+    "browserstack.local" : true,
     "local_identifier": null
   },
   "disable_usage_reporting": false
